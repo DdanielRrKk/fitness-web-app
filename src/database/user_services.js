@@ -12,7 +12,7 @@ import { auth } from '../../firebase.config';
 
 
 
-// CREAATE USER DATA OBJECT
+// CREATE USER DATA OBJECT
 export async function CreateUserDataObject(name, age, gender, weight, height) {
     try {
         console.log('auth.currentUser: ', auth.currentUser);
