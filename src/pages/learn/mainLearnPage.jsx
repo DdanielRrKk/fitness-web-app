@@ -48,9 +48,9 @@ function MainLearnPage() {
             
             <p>FAQ</p>
 
-            <div className='w-full'>
+            <div className='flex flex-col w-full gap-4'>
                 {faqList.map(faq => 
-                    <div className='button-container p-4 items-start mb-2' key={faq.id}>
+                    <div className='button-container p-4 items-start' key={faq.id}>
                         <p className='font-bold mb-2'>{faq.id}. {faq.question}</p>
                         <p>{faq.answer}</p>
                     </div>

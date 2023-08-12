@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import {
     AuthenticateUserWithEmailAndPassword,
     AuthenticateUserWithGoogle
@@ -8,6 +10,8 @@ import {
 
 
 function MainAuthenticationPage() {
+    const navigate = useNavigate();
+
     const [isForLogInFlag, setIsForLogInFlag] = React.useState(true);
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -19,16 +23,16 @@ function MainAuthenticationPage() {
 
     
     const handleAuthentication = () => {
-        AuthenticateUserWithEmailAndPassword(isForLogInFlag, email, password);
+        AuthenticateUserWithEmailAndPassword(isForLogInFlag, email, password).then(() => navigate('/'));
     }
     const handleAuthenticationWithGoogle = () => {
-        AuthenticateUserWithGoogle();
-    };
+        AuthenticateUserWithGoogle().then(() => navigate('/'));
+    }
 
     return (
         <div className="flex flex-col justify-center bg-white p-8 rounded shadow">
             <h2 className="text-2xl font-semibold mb-4 text-center">{isForLogInFlag ? "Вход" : "Регистрация"}</h2>
-            <div className="flex flex-col justify-center items-center" >
+            <form className="flex flex-col justify-center items-center" onSubmit={handleAuthentication}>
                 <div className="inline-block w-64 mb-4">
                     <label className="block font-semibold mb-1">Имейл</label>
                     <input
@@ -45,9 +49,7 @@ function MainAuthenticationPage() {
                         value={password}
                         onChange={handlePasswordChange} />
                 </div>
-                <button 
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
-                    onClick={handleAuthentication}>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded" type="submit">
                     {isForLogInFlag ? "Влез" : "Регистрирай се"}
                 </button>
                 <p className="mt-2">
@@ -58,7 +60,7 @@ function MainAuthenticationPage() {
                         {isForLogInFlag ? "Регистрирайте се тук" : "Влезте тук"}
                     </span>
                 </p>
-            </div>
+            </form>
 
             <button 
                 className="bg-blue-500 text-white px-4 py-2 rounded mt-4"

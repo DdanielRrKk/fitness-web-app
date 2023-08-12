@@ -3,13 +3,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsAuthenticated, setIsUserSetup } from './redux/slices/setupSlice';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase.config';
 import { ReadUserDataObject } from './database/user_services';
 
 import RootPage from "./pages/rootPage.jsx";
+import LandingPage from './pages/landing/landingPage';
+
 import HomePage from './pages/home/homePage';
 
 import MainAuthenticationPage from './pages/auth/mainAuthenticationPage.jsx';
@@ -19,31 +21,64 @@ import MainLearnPage from './pages/learn/mainLearnPage.jsx';
 import MainSettingsPage from './pages/settings/mainSettingsPage.jsx';
 
 import ErrorPage from './pages/errorPage.jsx';
-// import LoadingPage from './pages/loadingPage';
 
 
-const authRouter = createBrowserRouter([{ 
-  index: true, path: "/*", element: <MainAuthenticationPage />, errorElement: <ErrorPage />
-}]);
 
-const mainRouter = createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path: "/", element: <RootPage />, errorElement: <ErrorPage />, children: [
-      { path: "/home", element: <HomePage />, errorElement: <ErrorPage /> },
-      { path: "/meal", element: <MainMealPage />, errorElement: <ErrorPage /> },
-      { path: "/workout", element: <MainWorkoutPage />, errorElement: <ErrorPage /> },
-      { path: "/learn", element: <MainLearnPage />, errorElement: <ErrorPage /> },
-      { path: "/settings", element: <MainSettingsPage />, errorElement: <ErrorPage /> },
-      { path: "/*", element: <ErrorPage /> }
+    path: "/", 
+    element: <RootPage />, 
+    errorElement: <ErrorPage />,
+    children: [
+      { 
+        index: true,
+        path: "home", 
+        element: <HomePage />, 
+        errorElement: <ErrorPage />
+      },
+      { 
+        path: "meal", 
+        element: <MainMealPage />, 
+        errorElement: <ErrorPage />
+      },
+      { 
+        path: "workout", 
+        element: <MainWorkoutPage />, 
+        errorElement: <ErrorPage />
+      },
+      { 
+        path: "learn", 
+        element: <MainLearnPage />, 
+        errorElement: <ErrorPage />
+      },
+      { 
+        path: "settings", 
+        element: <MainSettingsPage />, 
+        errorElement: <ErrorPage />
+      },
     ]
   },
+  {
+    path: "/landing", 
+    element: <LandingPage />, 
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/auth",
+    element: <MainAuthenticationPage />,
+    errorElement: <ErrorPage />
+  },
+  { 
+      path: "/*", 
+      element: <ErrorPage /> 
+  }
 ]);
 
 function App() {
   const dispatch = useDispatch();
 
-  const isAuthenticated = useSelector(state => state.setup.isAuthenticated);
-  console.log('isAuthenticated: ', isAuthenticated);
+  const isAuthenticatedApp = React.useState(useSelector(state => state.setup.isAuthenticated));
+  console.log('isAuthenticatedApp: ', isAuthenticatedApp);
 
   React.useEffect(() => {
     onAuthStateChanged(auth, () => {
@@ -54,8 +89,7 @@ function App() {
     });
   }, [dispatch]);
 
-  const router = isAuthenticated ? mainRouter : authRouter;
-  return ( <RouterProvider router={router} /> );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,19 +1,16 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsUserSetup } from '../../redux/slices/setupSlice';
-
+import { useDispatch } from 'react-redux';
 import { ReadUserDataObject } from '../../database/user_services';
 
-import MainHomePage from './mainHomePage';
-import SetupHomePage from './setupHomePage';
+import SearchBar from '../../components/home/searchBar';
+import NutritionBox from '../../components/home/nutritionBox';
+
 
 function HomePage() {
     const dispatch = useDispatch();
 
     const [currentUser, setCurrentUser] = React.useState(null);
-
-    const isUserSetup = useSelector(state => state.setup.isUserSetup);
 
     React.useEffect(() => {
         ReadUserDataObject().then(data => setCurrentUser(data));
@@ -21,8 +18,34 @@ function HomePage() {
 
     console.log('currentUser: ', currentUser);
 
-    if(!isUserSetup) return <SetupHomePage />;
-    return <MainHomePage />;
+    const handleSearch = (searchedValue) => {
+        console.log('searchedValue: ', searchedValue);
+    }
+
+    return (
+        <div className="flex flex-col items-center w-full">
+            <div className='flex flex-row items-center justify-between w-full bg-white shadow-md'>
+                <h2>Hello, {currentUser?.name}</h2>
+                <SearchBar onSearch={handleSearch}/>
+            </div>
+
+            <div className='main-container mt-4'>
+                <h1>Dashboard</h1>
+
+                <div className='grid grid-cols-2 gap-4'>
+                    <div className='flex flex-col gap-4'>
+                        <NutritionBox />
+                        <div className='button-container'>Workout tracker</div>
+                    </div>
+                    <div className='flex flex-col gap-4'>
+                        <div className='button-container'>Weight log</div>
+                        <div className='button-container'>Meal log</div>
+                        <div className='button-container'>Workout log</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default HomePage;

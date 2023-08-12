@@ -1,47 +1,84 @@
 import React from 'react';
 
-import { Link, Outlet } from 'react-router-dom';
+import { useSelector} from 'react-redux';
+import { NavLink, Outlet, Navigate } from 'react-router-dom';
+
+import LandingPage from './landing/landingPage';
+
+import Logo from '../assets/mtp-dashboard-logo.png';
 
 function RootPage() {
-    return (
-        <div className="flex w-full">
-            <div className="w-32 ">
-                <div className="w-32 h-screen flex flex-col justify-between fixed bg-primary p-4">
-                    <div className="flex flex-col space-y-4">
-                        <Link   to="/home" 
-                                className="navbar-button">
-                            Home
-                        </Link>
+    const isAuthenticated = useSelector(state => state.setup.isAuthenticated);
+    console.log('isAuthenticated root: ', isAuthenticated);
 
-                        <Link   to="/meal"
-                                className="navbar-button">
-                            Meal
-                        </Link>
+    const handleIsActiveNavLink = ({ isActive }) => isActive ? "navbar-button-focused block" : "navbar-button block";
 
-                        <Link   to="/workout"
-                                className="navbar-button">
-                            Workout
-                        </Link>
-                        
-                        <Link   to="/learn"
-                                className="navbar-button">
-                            Learn
-                        </Link>
+    return isAuthenticated ?
+        <div className='flex w-full h-screen'>
+            <div className='w-32'>
+                <nav className='flex flex-col w-32 h-full justify-between fixed p-4 bg-primary'>
+                    <div>
+                        <img 
+                            className='mb-4'
+                            src={Logo} 
+                            alt="mtp-logo-icon" />
+
+                        <ul className="flex flex-col gap-4">
+                            <li>
+                                <NavLink 
+                                    to='home'
+                                    className={handleIsActiveNavLink}>
+                                        Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink 
+                                    to='meal'
+                                    className={handleIsActiveNavLink}>
+                                        Meal
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink 
+                                    to='workout'
+                                    className={handleIsActiveNavLink}>
+                                        Workout
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink 
+                                    to='learn'
+                                    className={handleIsActiveNavLink}>
+                                        Learn
+                                </NavLink>
+                            </li>
+                        </ul>
                     </div>
-                    <div className="flex flex-col space-y-4">
-                        <Link   to="/settings"
-                                className="navbar-button">
-                            Settings
-                        </Link>
-                    </div>
-                </div>
+
+                    <ul className='flex flex-col gap-4'>
+                        <li>
+                            <NavLink 
+                                to='settings'
+                                className={handleIsActiveNavLink}>
+                                    Settings
+                            </NavLink>
+                        </li>
+                        {/* <li>
+                            <NavLink 
+                                to='support'
+                                className={handleIsActiveNavLink}>
+                                    Support
+                            </NavLink>
+                        </li> */}
+                    </ul>
+                </nav>
             </div>
 
-            <div className="flex flex-row w-full justify-center p-4">
+            <main className='flex flex-col w-11/12 items-center'>
                 <Outlet />
-            </div>
+            </main>
         </div>
-    );
+    : <LandingPage />;
 }
 
 export default RootPage;

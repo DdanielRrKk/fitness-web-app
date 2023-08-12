@@ -7,7 +7,7 @@ import { setIsUserSetup } from '../../redux/slices/setupSlice';
 // import { Link } from 'react-router-dom';
 import { CreateUserDataObject } from '../../database/user_services';
 
-function SetupHomePage() {
+function setupPage() {
     const dispatch = useDispatch();
 
     const [name, setName] = React.useState('');
@@ -115,4 +115,4 @@ function SetupHomePage() {
     );
 }
 
-export default SetupHomePage;
+export default setupPage;
