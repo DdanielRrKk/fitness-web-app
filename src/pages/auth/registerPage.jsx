@@ -7,14 +7,27 @@ import { setIsUserSetup } from '../../redux/slices/setupSlice';
 // import { Link } from 'react-router-dom';
 import { CreateUserDataObject } from '../../database/user_services';
 
-function setupPage() {
+function registerPage() {
     const dispatch = useDispatch();
 
     const [name, setName] = React.useState('');
-    const [age, setAge] = React.useState('');
+
+    const [dietGoal, setDietGoal] = React.useState(null);
+    const [activityLevel, setActivityLevel] = React.useState(null);
+
     const [gender, setGender] = React.useState('0');
-    const [weight, setWeight] = React.useState('');
+    const [age, setAge] = React.useState('');
+
     const [height, setHeight] = React.useState('');
+    const [weight, setWeight] = React.useState('');
+    const [goalWeight, setGoalWeight] = React.useState('');
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [confirmPassword, setConfirmPassword] = React.useState('');
+
+    const [username, setUsername] = React.useState('');
+    
     
     
     const handleNameChange = (event) => setName(event.target.value);
@@ -115,4 +128,4 @@ function setupPage() {
     );
 }
 
-export default setupPage;
+export default registerPage;
