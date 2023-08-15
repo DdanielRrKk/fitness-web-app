@@ -58,18 +58,18 @@ function RootPage() {
                     <ul className='flex flex-col gap-4'>
                         <li>
                             <NavLink 
+                                to='help'
+                                className={handleIsActiveNavLink}>
+                                    Help
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
                                 to='settings'
                                 className={handleIsActiveNavLink}>
                                     Settings
                             </NavLink>
                         </li>
-                        {/* <li>
-                            <NavLink 
-                                to='support'
-                                className={handleIsActiveNavLink}>
-                                    Support
-                            </NavLink>
-                        </li> */}
                     </ul>
                 </nav>
             </div>
