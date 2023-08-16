@@ -31,4 +31,8 @@
                 bg-white  
                 rounded-lg shadow-md overflow-hidden;
     }
+
+    .subtitle {
+        @apply  border-l-8 border-black border-solid pl-3
+    }
 }

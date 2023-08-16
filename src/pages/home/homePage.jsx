@@ -18,26 +18,26 @@ function HomePage() {
 
     console.log('currentUser: ', currentUser);
 
-    const handleSearch = (searchedValue) => {
-        console.log('searchedValue: ', searchedValue);
-    }
+    // const handleSearch = (searchedValue) => {
+    //     console.log('searchedValue: ', searchedValue);
+    // }
 
     return (
         <div className='flex w-full h-full'>
-            <div className='w-full h-full bg-secondary'>
-                <h1>Hello, {currentUser?.name}</h1>
+            <div className='w-full h-full bg-secondary p-4'>
+                <h1 className='text-xl'>Hello, {currentUser?.name}!</h1>
 
-                <h2>Favourites</h2>
+                <h2 className='subtitle'>Favourites</h2>
                 <div>
                     Favourites box
                 </div>
 
-                <h2>Activity</h2>
+                <h2 className='subtitle'>Activity</h2>
                 <div>
                     Activity box
                 </div>
 
-                <h2>Challenges</h2>
+                <h2 className='subtitle'>Challenges</h2>
                 <div>
                     Challenges box
                 </div>
