@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsAuthenticated, setIsUserSetup } from './redux/slices/setupSlice';
+import { setIsAuthenticated } from './redux/slices/setupSlice';
 
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase.config';
-import { ReadUserDataObject } from './database/user_services';
 
 import RootPage from "./pages/rootPage.jsx";
 import LandingPage from './pages/landing/landingPage';
@@ -63,6 +62,11 @@ const router = createBrowserRouter([
         element: <MainSettingsPage />, 
         errorElement: <ErrorPage />
       },
+      { 
+        path: "profile", 
+        element: <MainSettingsPage />, 
+        errorElement: <ErrorPage />
+      },
     ]
   },
   {
@@ -90,9 +94,6 @@ function App() {
   React.useEffect(() => {
     onAuthStateChanged(auth, () => {
       dispatch(setIsAuthenticated(true));
-      ReadUserDataObject().then((user) => {
-        dispatch(setIsUserSetup(user !== null));
-      });
     });
   }, [dispatch]);
 
