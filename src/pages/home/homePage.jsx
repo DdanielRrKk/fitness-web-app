@@ -1,14 +1,22 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReadUserDataObject } from '../../database/user_services';
 
-import SearchBar from '../../components/home/searchBar';
-import NutritionBox from '../../components/home/nutritionBox';
+import { Link } from 'react-router-dom';
+
+import Calendar from '../../components/home/calendar';
+import TaskList from '../../components/home/taskList';
+import FoodPopup from '../../components/popup/enterFoodPopup';
 
 
 function HomePage() {
     const dispatch = useDispatch();
+
+    const [showPopup, setShowPopup] = React.useState(0);
+
+    const user = useSelector(state => state.user);
+    console.log('user Home: ', user);
 
     const [currentUser, setCurrentUser] = React.useState(null);
 
@@ -21,16 +29,58 @@ function HomePage() {
     // const handleSearch = (searchedValue) => {
     //     console.log('searchedValue: ', searchedValue);
     // }
+    const handleOpenFoodPopup = () => setShowPopup(1);
+
+    const handleEnterSteps = () => console.log('Enter Steps');
+    const handleEnterFood = (foodItem) => {
+        console.log('Food Item: ', foodItem);
+    }
+    const handleEnterWorkout = () => console.log('Enter Workout');
+    const handleEnterSleep = () => console.log('Enter Sleep');
+    const handleEnterWater = () => console.log('Enter Water');
 
     return (
         <div className='flex w-full h-full'>
             <div className='w-full h-full bg-secondary p-4'>
-                <h1 className='text-xl'>Hello, {currentUser?.name}!</h1>
+                <h1 className='text-4xl mb-4'>Hello, {currentUser?.FirstName}!</h1>
 
-                <h2 className='subtitle'>Favourites</h2>
+                <h2 className='subtitle'>Quick Access</h2>
+                <div className='flex justify-evenly w-full'>
+                    <button 
+                        className='quick-access-button'
+                        onClick={null}>
+                        Enter Steps
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={handleOpenFoodPopup}>
+                        Enter Food
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={null}>
+                        Enter Workout
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={null}>
+                        Enter Sleep
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={null}>
+                        Enter Water
+                    </button>
+                </div>
+
+                {/* <h2 className='subtitle'>Favourites</h2>
                 <div>
                     Favourites box
-                </div>
+                </div> */}
 
                 <h2 className='subtitle'>Activity</h2>
                 <div>
@@ -43,41 +93,40 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className='w-1/12 bg-white'>
-                <h2>Prifile</h2>
+            <div className='w-3/12 p-4 text-center bg-white'>
+                <h2 className='subtitle'>Prifile</h2>
 
-                <div className="rounded-full overflow-hidden w-16 h-16">
+                <Link 
+                    className="w-32 h-32 inline-block rounded-full overflow-hidden"
+                    to={'/profile'}>
                     <img
                         className="w-full h-full object-cover"
                         // src={currentUser?.profilePhoto}
-                        src={currentUser?.profilePhoto}
+                        src={currentUser?.PhotoURL}
                         alt='users-profile-photo'/>
-                </div>
+                </Link>
+
+                <h2 className='text-3xl font-bold'>{currentUser?.FirstName} {currentUser?.LastName}</h2>
+            
+                <h2 className='subtitle mt-8 mb-4'>Calendar</h2>
+
+                <Calendar />
+                
+                <h2 className='subtitle mt-8 mb-4'>Scheduled</h2>
+
+                <TaskList />
             </div>
+
+            {   showPopup == 0 ? null :
+                showPopup == 1 ?
+                    <FoodPopup 
+                        handleSetShowPopup={setShowPopup}
+                        handleEnterFood={handleEnterFood}/>
+                    :
+                    null
+
+            }
         </div>
-
-        // <div className="flex flex-col items-center w-full">
-        //     <div className='flex flex-row items-center justify-between w-full bg-white shadow-md'>
-        //         <h2>Hello, {currentUser?.name}</h2>
-        //         <SearchBar onSearch={handleSearch}/>
-        //     </div>
-
-        //     <div className='main-container mt-4'>
-        //         <h1>Dashboard</h1>
-
-        //         <div className='grid grid-cols-2 gap-4'>
-        //             <div className='flex flex-col gap-4'>
-        //                 <NutritionBox />
-        //                 <div className='button-container'>Workout tracker</div>
-        //             </div>
-        //             <div className='flex flex-col gap-4'>
-        //                 <div className='button-container'>Weight log</div>
-        //                 <div className='button-container'>Meal log</div>
-        //                 <div className='button-container'>Workout log</div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     );
 }
 

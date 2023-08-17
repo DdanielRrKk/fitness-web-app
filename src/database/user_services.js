@@ -10,6 +10,8 @@ import {
 import { db } from '../../firebase.config';
 import { auth } from '../../firebase.config';
 
+import { USER_DATA } from '../helpers/test_data';
+
 
 
 // CREATE USER DATA OBJECT
@@ -46,24 +48,25 @@ export async function CreateUserDataObject(name, age, gender, weight, height) {
 // READ USER DATA OBJECT
 export async function ReadUserDataObject() {
     try {
-        console.log('auth.currentUser: ', auth.currentUser);
-        if(auth?.currentUser === null || auth?.currentUser === undefined) {    
-            console.log('auth.currentUser was empty!');
-            return null;
-        }
+        // console.log('auth.currentUser: ', auth.currentUser);
+        // if(auth?.currentUser === null || auth?.currentUser === undefined) {    
+        //     console.log('auth.currentUser was empty!');
+        //     return null;
+        // }
 
-        const userCollectionRef = collection(db, 'user');
-        const userDocRef = doc(userCollectionRef, auth.currentUser.uid);
+        // const userCollectionRef = collection(db, 'user');
+        // const userDocRef = doc(userCollectionRef, auth.currentUser.uid);
 
-        const userDocSnapshot = await getDoc(userDocRef);
-        if(userDocSnapshot.exists()) {
-            console.log('userDocSnapshot.data(): ', userDocSnapshot.data());
-            return userDocSnapshot.data();
-        }
-        else{
-            console.log('No such document!');
-            return null;
-        }
+        // const userDocSnapshot = await getDoc(userDocRef);
+        // if(userDocSnapshot.exists()) {
+        //     console.log('userDocSnapshot.data(): ', userDocSnapshot.data());
+        //     return userDocSnapshot.data();
+        // }
+        // else{
+        //     console.log('No such document!');
+        //     return null;
+        // }
+        return USER_DATA;
     }
     catch (error) {
         console.log('Error in ReadUserDataObject');

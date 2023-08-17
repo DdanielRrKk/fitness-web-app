@@ -33,6 +33,9 @@
     }
 
     .subtitle {
-        @apply  border-l-8 border-black border-solid pl-3
+        @apply  text-left pl-3 font-bold border-l-8 border-black border-solid  
+    }
+    .quick-access-button {
+        @apply  p-3 w-1/6 text-center bg-primary text-white rounded-lg
     }
 }
