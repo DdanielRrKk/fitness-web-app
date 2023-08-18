@@ -1,16 +1,16 @@
 export const STEPS_DATA = [
     {
-        ID: 1,
+        ID: 0,
         TotalSteps: 1000, // int
         GoalSteps: 5000 // int
     },
     {
-        ID: 2,
+        ID: 1,
         TotalSteps: 2000, // int
         GoalSteps: 10000 // int
     },
     {
-        ID: 3,
+        ID: 2,
         TotalSteps: 3000, // int
         GoalSteps: 10000 // int
     }
@@ -18,17 +18,17 @@ export const STEPS_DATA = [
 
 export const SLEEP_DATA = [
     {
-        ID: 1,
+        ID: 0,
         StartSleep: '0:00', // time in format HH:MM
         EndSleep: '8:00', // time in format HH:MM
     },
     {
-        ID: 2,
+        ID: 1,
         StartSleep: '0:00', // time in format HH:MM
         EndSleep: '8:30', // time in format HH:MM
     },
     {
-        ID: 3,
+        ID: 2,
         StartSleep: '1:00', // time in format HH:MM
         EndSleep: '9:00', // time in format HH:MM
     }
@@ -79,11 +79,11 @@ export const FOOD_LOG_DATA = [
 
 export const WATER_DATA = [
     {
-        ID: 1,
+        ID: 0,
         Amount: 100, // double ml
     },
     {
-        ID: 2,
+        ID: 1,
         Amount: 100, // double ml
     }
 ];
