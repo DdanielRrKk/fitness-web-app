@@ -81,10 +81,12 @@ export const WATER_DATA = [
     {
         ID: 0,
         Amount: 100, // double ml
+        Date: '2023-01-01T00:00:00.000Z', // date in format YYYY-MM-DD:HH:MM:SS.MS
     },
     {
         ID: 1,
         Amount: 100, // double ml
+        Date: '2023-01-01T00:00:00.000Z', // date in format YYYY-MM-DD:HH:MM:SS.MS
     }
 ];
 

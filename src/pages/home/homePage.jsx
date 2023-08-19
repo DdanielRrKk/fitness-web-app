@@ -9,6 +9,8 @@ import Calendar from '../../components/home/calendar';
 import TaskList from '../../components/home/taskList';
 import FoodPopup from '../../components/popup/enterFoodPopup';
 
+import VerticalBarChart from '../../components/home/verticalBarChart';
+
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -39,9 +41,10 @@ function HomePage() {
     const handleEnterSleep = () => console.log('Enter Sleep');
     const handleEnterWater = () => console.log('Enter Water');
 
+
     return (
         <div className='flex w-full h-full'>
-            <div className='w-full h-full bg-secondary p-4'>
+            <div className='flex flex-col gap-4 w-full h-full bg-secondary p-4'>
                 <h1 className='text-4xl mb-4'>Hello, {currentUser?.FirstName}!</h1>
 
                 <h2 className='subtitle'>Quick Access</h2>
@@ -83,9 +86,7 @@ function HomePage() {
                 </div> */}
 
                 <h2 className='subtitle'>Activity</h2>
-                <div>
-                    Activity box
-                </div>
+                <VerticalBarChart title="Steps"/>
 
                 <h2 className='subtitle'>Challenges</h2>
                 <div>
