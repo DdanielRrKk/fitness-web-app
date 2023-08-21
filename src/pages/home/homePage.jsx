@@ -9,7 +9,10 @@ import Calendar from '../../components/home/calendar';
 import TaskList from '../../components/home/taskList';
 import FoodPopup from '../../components/popup/enterFoodPopup';
 
-import VerticalBarChart from '../../components/home/verticalBarChart';
+import StepsVerticalBarChart from '../../components/home/stepsVerticalBarChart';
+import CaloriesCircularProgressBar from '../../components/home/caloriesCircularProgressBar';
+import WorkoutBox from '../../components/home/workoutBox';
+import ChallengeBox from '../../components/home/challengeBox';
 
 
 function HomePage() {
@@ -43,7 +46,7 @@ function HomePage() {
 
 
     return (
-        <div className='flex w-full h-full'>
+        <div className='flex w-full h-fit'>
             <div className='flex flex-col gap-4 w-full h-full bg-secondary p-4'>
                 <h1 className='text-4xl mb-4'>Hello, {currentUser?.FirstName}!</h1>
 
@@ -86,36 +89,42 @@ function HomePage() {
                 </div> */}
 
                 <h2 className='subtitle'>Activity</h2>
-                <VerticalBarChart title="Steps"/>
+                <div className='flex w-full justify-evenly'>
+                    <StepsVerticalBarChart data={null}/>
+
+                    <CaloriesCircularProgressBar width={250} totalCalories={1500} targetCalories={2700}/>
+
+                    <WorkoutBox onClick={() => console.log('click')}/>
+                </div>
 
                 <h2 className='subtitle'>Challenges</h2>
-                <div>
-                    Challenges box
-                </div>
+                <ChallengeBox />
             </div>
 
-            <div className='w-3/12 p-4 text-center bg-white'>
-                <h2 className='subtitle'>Prifile</h2>
+            <div className='w-3/12'>
+                <div className='fixed w-3/12 p-4 text-center bg-white'>
+                    <h2 className='subtitle'>Prifile</h2>
 
-                <Link 
-                    className="w-32 h-32 inline-block rounded-full overflow-hidden"
-                    to={'/profile'}>
-                    <img
-                        className="w-full h-full object-cover"
-                        // src={currentUser?.profilePhoto}
-                        src={currentUser?.PhotoURL}
-                        alt='users-profile-photo'/>
-                </Link>
+                    <Link 
+                        className="w-32 h-32 inline-block rounded-full overflow-hidden"
+                        to={'/profile'}>
+                        <img
+                            className="w-full h-full object-cover"
+                            // src={currentUser?.profilePhoto}
+                            src={currentUser?.PhotoURL}
+                            alt='users-profile-photo'/>
+                    </Link>
 
-                <h2 className='text-3xl font-bold'>{currentUser?.FirstName} {currentUser?.LastName}</h2>
-            
-                <h2 className='subtitle mt-8 mb-4'>Calendar</h2>
-
-                <Calendar />
+                    <h2 className='text-3xl font-bold'>{currentUser?.FirstName} {currentUser?.LastName}</h2>
                 
-                <h2 className='subtitle mt-8 mb-4'>Scheduled</h2>
+                    <h2 className='subtitle mt-8 mb-4'>Calendar</h2>
 
-                <TaskList />
+                    <Calendar />
+                    
+                    <h2 className='subtitle mt-8 mb-4'>Scheduled</h2>
+
+                    <TaskList />
+                </div>
             </div>
 
             {   showPopup == 0 ? null :

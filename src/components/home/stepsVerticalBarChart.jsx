@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VerticalBarChart = ({ title, data = null }) => {
+const StepsVerticalBarChart = ({ data = null }) => {
   data = [
     { label: 'Jan', value: 4000 },
     { label: 'Feb', value: 10000 },
@@ -21,11 +21,12 @@ const VerticalBarChart = ({ title, data = null }) => {
 
   return (
     <div className='w-fit text-center bg-white p-4 rounded-lg shadow-lg'>
-      <h2 className='text-lg font-bold'>{title}</h2>
+      <h2 className='text-lg font-bold'>Steps</h2>
       <div className="flex gap-4 h-64">
         {data.map((item) => (
-          <div key={item.label} className='flex flex-col justify-end'>
-            <div className='w-3 bg-blue-500 rounded-full' style={{ height: `${(item.value / max) * 100}%` }}></div>
+          <div key={item.label} className='flex flex-col justify-end relative group'>
+            <span className='absolute w-44 p-2 top-0 rounded-md text-white bg-gray-900 font-bold scale-0 z-10 group-hover:scale-100'>Total steps: {item.value}</span>
+            <div className='w-3 bg-primary rounded-full' style={{ height: `${(item.value / max) * 100}%` }}></div>
             <p className='mt-4'>{item.label}</p>
           </div>
         ))}
@@ -34,4 +35,4 @@ const VerticalBarChart = ({ title, data = null }) => {
   );
 };
 
-export default VerticalBarChart;
+export default StepsVerticalBarChart;
