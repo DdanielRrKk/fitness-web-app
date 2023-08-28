@@ -18,7 +18,7 @@ import ChallengeBox from '../../components/home/challengeBox';
 function HomePage() {
     const dispatch = useDispatch();
 
-    const [showPopup, setShowPopup] = React.useState(0);
+    const [showPopupsFlag, setShowPopupsFlag] = React.useState(0);
 
     const user = useSelector(state => state.user);
     console.log('user Home: ', user);
@@ -34,7 +34,7 @@ function HomePage() {
     // const handleSearch = (searchedValue) => {
     //     console.log('searchedValue: ', searchedValue);
     // }
-    const handleOpenFoodPopup = () => setShowPopup(1);
+    const handleOpenFoodPopup = () => setShowPopupsFlag(1);
 
     const handleEnterSteps = () => console.log('Enter Steps');
     const handleEnterFood = (foodItem) => {
@@ -127,10 +127,10 @@ function HomePage() {
                 </div>
             </div>
 
-            {   showPopup == 0 ? null :
-                showPopup == 1 ?
+            {   showPopupsFlag == 0 ? null :
+                showPopupsFlag == 1 ?
                     <FoodPopup 
-                        handleSetShowPopup={setShowPopup}
+                        handleSetShowPopup={setShowPopupsFlag}
                         handleEnterFood={handleEnterFood}/>
                     :
                     null
