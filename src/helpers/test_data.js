@@ -39,8 +39,8 @@ export const FOOD_LOG_DATA = [
         ID: 0,
         Name: 'Banana', // string
         Type: 'Breakfast',  // string 'Breakfast' / 'Lunch' / 'Dinner' / 'MorningSnack' / 'AfternootSnack' / 'EveningSnack'
-        CaloriesPerServing: 100, // double
-        Carbohydrates: 100, // double
+        Calories: 100, // double
+        TotalCarbohydrate: 100, // double
         Protein: 100, // double
         TotalFat: 100, // double
         SaturatedFat: 50, // double
@@ -59,8 +59,8 @@ export const FOOD_LOG_DATA = [
         ID: 1,
         Name: 'Apple', // string
         Type: 'Breakfast', // string 'Breakfast' / 'Lunch' / 'Dinner' / 'MorningSnack' / 'AfternootSnack' / 'EveningSnack'
-        CaloriesPerServing: 100, // double
-        Carbohydrates: 100, // double
+        Calories: 100, // double
+        TotalCarbohydrate: 100, // double
         Protein: 100, // double
         TotalFat: 100, // double
         SaturatedFat: 50, // double

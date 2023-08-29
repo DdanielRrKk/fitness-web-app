@@ -90,9 +90,7 @@ function FoodPopup({ handleSetShowPopup, handleEnterFood }) {
                     <option value="Breakfast">Breakfast</option>
                     <option value="Lunch">Lunch</option>
                     <option value="Dinner">Dinner</option>
-                    <option value="Mourning Snack">Mourning Snack</option>
-                    <option value="Afternoon Snack">Afternoon Snack</option>
-                    <option value="Evening Snack">Evening Snack</option>
+                    <option value="Mourning Snack">Snack</option>
                 </select>
 
                 <div className='flex items-center justify-between'>
