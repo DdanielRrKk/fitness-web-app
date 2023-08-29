@@ -8,9 +8,16 @@ import NutritionGoalsBox from '../../components/meal/nutritionGoalsBox';
 import WaterBox from '../../components/meal/waterBox';
 import MealBox from '../../components/meal/mealBox';
 
+import NutritionTable from '../../components/meal/nutritionTable';
+import NutritionPieChart from '../../components/meal/nutritionPieChart';
+
+import { FOOD_LOG_DATA } from '../../helpers/test_data';
+
 
 function MainMealPage() {
     const [showPopup, setShowPopup] = React.useState(false);
+    const [showFullNutritionChart, setShowFullNutritionChart] = React.useState(false);
+
     const [namePopup, setNamePopup] = React.useState('');
     
     const [name, setName] = React.useState('');
@@ -19,6 +26,8 @@ function MainMealPage() {
     const [protein, setProtein] = React.useState('');
     const [fat, setFat] = React.useState('');
 
+
+    const handleShowNutritionChartChange = () => setShowFullNutritionChart(!showFullNutritionChart);
 
     const handleBreakfastPopupClick = () => {
         setNamePopup('Breakfast');
@@ -61,8 +70,10 @@ function MainMealPage() {
         setShowPopup(false);
     };
 
+    
+
     return (
-        <div className='main-container'>
+        <div className='main-container max-h-fit min-h-full'>
             <NutritionGoalsBox 
                 calories={100}
                 carbs={20}
@@ -141,6 +152,15 @@ function MainMealPage() {
                     </div>
                 </div>
             )}
+
+            <NutritionTable foodData={FOOD_LOG_DATA}/>
+            
+            <div className='flex flex-col items-center w-full h-auto mt-4'>
+                <button className='quick-access-button w-full' onClick={handleShowNutritionChartChange}>
+                    {showFullNutritionChart ? 'Hide Advanced Nutrition' : 'Full Nutrition Chart'}
+                </button>
+                <NutritionPieChart foodData={FOOD_LOG_DATA} isFull={showFullNutritionChart}/>
+            </div>
         </div>
     );
 }
