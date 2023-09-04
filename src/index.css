@@ -19,7 +19,8 @@
     }
 
     .main-container {
-        @apply  flex flex-col w-2/3 h-full
+        @apply  w-2/3 h-full
+                flex flex-col 
                 p-4
                 bg-secondary
                 rounded-md;
@@ -36,6 +37,9 @@
         @apply  text-left pl-3 font-bold border-l-8 border-black border-solid  
     }
     .quick-access-button {
-        @apply  p-3 w-1/6 font-bold text-center bg-primary text-white rounded-lg
+        @apply  w-1/6 
+                p-3 text-center 
+                font-bold  
+                bg-primary text-white rounded-lg
     }
 }
