@@ -74,7 +74,7 @@ function RootPage() {
                 </nav>
             </div>
 
-            <main className='flex flex-col w-11/12 items-center'>
+            <main className='flex flex-col w-full items-center'>
                 <Outlet />
             </main>
         </div>

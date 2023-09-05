@@ -56,13 +56,13 @@ function MainMealPage() {
     
 
     return (
-        <div className='main-container max-h-fit min-h-full'>
+        <div className='w-full h-auto flex flex-col gap-4 p-4 bg-secondary'>
             <WaterBox 
                 addWater={handleAddWater}
                 removeWater={handleRemoveWater}
                 water={water}/>
 
-            <div className='flex justify-evenly w-full my-4'>
+            <div className='flex justify-evenly w-full'>
                     <button 
                         className='quick-access-button'
                         onClick={handleBreakfastPopupClick}>
@@ -90,10 +90,13 @@ function MainMealPage() {
 
             <NutritionTable foodData={foodItems}/>
             
-            <div className='flex flex-col items-center w-full h-auto mt-4'>
-                <button className='quick-access-button w-full' onClick={handleShowNutritionChartChange}>
-                    {showFullNutritionChart ? 'Hide Advanced Nutrition' : 'Full Nutrition Chart'}
+            <div className='button-container h-fit flex flex-row justify-evenly items-center'>
+                <button 
+                    className='quick-access-button w-56' 
+                    onClick={handleShowNutritionChartChange}>
+                    { showFullNutritionChart ? 'Hide Advanced Nutrition' : 'Full Nutrition Chart' }
                 </button>
+                
                 <NutritionPieChart foodData={foodItems} isFull={showFullNutritionChart}/>
             </div>
 

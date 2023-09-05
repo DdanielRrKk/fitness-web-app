@@ -39,21 +39,21 @@ export const FOOD_LOG_DATA = [
         ID: 0,
         Name: 'Banana', // string
         Type: 'Breakfast',  // string 'Breakfast' / 'Lunch' / 'Dinner' / 'MorningSnack' / 'AfternootSnack' / 'EveningSnack'
-        Calories: 100, // double
-        TotalCarbohydrate: 100, // double
+        Calories: 1200, // double
+        TotalCarbohydrate: 360, // double
         Protein: 100, // double
-        TotalFat: 100, // double
-        SaturatedFat: 50, // double
-        TransFat: 50, // double
-        Cholesterol: 100, // double
-        Sodium: 100, // double
-        Potassium: 100, // double
-        DietaryFiber: 100, // double
-        Sugars: 100, // double
-        VitaminA: 100, // % (100% = 900 mcg RAE)
-        VitaminC: 100, // % (100% = 90 mg)
-        Calcium: 100, // % (100% = 1300 mg)
-        Iron: 100 // % (100% = 18 mg)
+        TotalFat: 40, // double
+        SaturatedFat: 20, // double
+        TransFat: 20, // double
+        Cholesterol: 36, // double
+        Sodium: 9, // double
+        Potassium: 12, // double
+        DietaryFiber: 34, // double
+        Sugars: 27, // double
+        VitaminA: 11, // % (100% = 900 mcg RAE)
+        VitaminC: 16, // % (100% = 90 mg)
+        Calcium: 3, // % (100% = 1300 mg)
+        Iron: 2 // % (100% = 18 mg)
     },
     {
         ID: 1,

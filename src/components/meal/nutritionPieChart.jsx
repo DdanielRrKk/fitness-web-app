@@ -130,41 +130,52 @@ function NutritionPieChart({ foodData, isFull }) {
 
     if(isFull) {
         return (
-            <PieChart width={600} height={400} title='Nutrition' style={{padding: '10px', flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className='flex h-[500px] w-fit my-2'>
+                <PieChart 
+                    width={660} 
+                    height={500} 
+                    title='Nutrition' 
+                    style={{padding: '10px', flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Pie
+                        dataKey="value"
+                        data={dataFull}
+                        cx="50%"
+                        cy="50%"
+                        label={renderCustomizedLabelFull}
+                        color='#8884d8'>
+                            {dataFull.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                    </Pie>
+
+                    <Tooltip />
+                </PieChart>
+            </div>
+        );
+    }
+
+    return (
+        <div className='flex h-[500px] w-fit my-2'>
+            <PieChart 
+                width={660} 
+                height={500}
+                style={{padding: '10px', flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Pie
                     dataKey="value"
-                    data={dataFull}
+                    data={dataNotFull}
                     cx="50%"
                     cy="50%"
-                    label={renderCustomizedLabelFull}
+                    label={renderCustomizedLabelNonFull}
+                    labelLine={false}
                     color='#8884d8'>
-                        {dataFull.map((entry, index) => (
+                        {dataNotFull.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                 </Pie>
 
                 <Tooltip />
             </PieChart>
-        );
-    }
-
-    return (
-        <PieChart width={400} height={400}>
-            <Pie
-                dataKey="value"
-                data={dataNotFull}
-                cx="50%"
-                cy="50%"
-                label={renderCustomizedLabelNonFull}
-                labelLine={false}
-                color='#8884d8'>
-                    {dataNotFull.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-            </Pie>
-
-            <Tooltip />
-        </PieChart>
+        </div>
     );
 };
 
