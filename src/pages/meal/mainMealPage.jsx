@@ -56,7 +56,7 @@ function MainMealPage() {
     
 
     return (
-        <div className='w-full h-auto flex flex-col gap-4 p-4 bg-secondary'>
+        <div className='main-container'>
             <WaterBox 
                 addWater={handleAddWater}
                 removeWater={handleRemoveWater}

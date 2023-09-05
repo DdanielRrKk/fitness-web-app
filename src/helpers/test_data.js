@@ -103,7 +103,7 @@ export const TASK_DATA = [
         DueDate: '2023-01-01T00:00:00.000Z', // date in format YYYY-MM-DD:HH:MM:SS.MS
         IsChecked: false
     }
-]
+];
 
 export const WORKOUT_PLAN_DATA = {
     Name: "Mr. Olympia PPL Workout", 

@@ -23,7 +23,7 @@ function WaterBox({
     }
 
     return (
-        <div className='w-full flex flex-row justify-between p-4 bg-white rounded-lg'>
+        <div className='button-container flex-row justify-between p-4'>
             <div className='w-1/3 flex flex-col gap-4'>
                 <p>Add Water</p>
 

@@ -19,11 +19,7 @@
     }
 
     .main-container {
-        @apply  w-2/3 h-full
-                flex flex-col 
-                p-4
-                bg-secondary
-                rounded-md;
+        @apply  w-full h-full flex flex-col gap-4 p-4 bg-secondary;
     }
 
     .button-container {

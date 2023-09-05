@@ -46,8 +46,8 @@ function HomePage() {
 
 
     return (
-        <div className='flex w-full h-fit'>
-            <div className='flex flex-col gap-4 w-full h-full bg-secondary p-4'>
+        <div className='flex w-full h-full'>
+            <div className='main-container'>
                 <h1 className='text-4xl mb-4'>Hello, {currentUser?.FirstName}!</h1>
 
                 <h2 className='subtitle'>Quick Access</h2>
