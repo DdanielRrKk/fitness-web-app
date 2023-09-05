@@ -2,165 +2,107 @@ import React from 'react';
 
 // import { Link } from 'react-router-dom';
 
-import { CreateMealDataLog } from '../../database/meal_services';
-
-import NutritionGoalsBox from '../../components/meal/nutritionGoalsBox';
 import WaterBox from '../../components/meal/waterBox';
-import MealBox from '../../components/meal/mealBox';
 
 import NutritionTable from '../../components/meal/nutritionTable';
 import NutritionPieChart from '../../components/meal/nutritionPieChart';
+
+import FoodPopup from '../../components/popup/enterFoodPopup';
 
 import { FOOD_LOG_DATA } from '../../helpers/test_data';
 
 
 function MainMealPage() {
-    const [showPopup, setShowPopup] = React.useState(false);
+    const [showPopupFlag, setShowPopupFlag] = React.useState(false);
     const [showFullNutritionChart, setShowFullNutritionChart] = React.useState(false);
 
-    const [namePopup, setNamePopup] = React.useState('');
+    const [popupType, setPopupType] = React.useState('');
     
-    const [name, setName] = React.useState('');
-    const [grams, setGrams] = React.useState('');
-    const [carbs, setCarbs] = React.useState('');
-    const [protein, setProtein] = React.useState('');
-    const [fat, setFat] = React.useState('');
+    const [foodItems, setFoodItems] = React.useState(FOOD_LOG_DATA);
+    const [water, setWater] = React.useState(0);
 
 
     const handleShowNutritionChartChange = () => setShowFullNutritionChart(!showFullNutritionChart);
 
+    const handleAddWater = (value) => {
+        console.log('Add water: ', value);
+        setWater(water + value);
+    }
+    const handleRemoveWater = (value) => {
+        console.log('Remove water: ', value);
+        const temp = water - value;
+        setWater(temp >= 0 ? temp : 0);
+    }
+
     const handleBreakfastPopupClick = () => {
-        setNamePopup('Breakfast');
-        setShowPopup(true);
+        setPopupType('Breakfast'); setShowPopupFlag(true);
     }
     const handleLunchPopupClick = () => {
-        setNamePopup('Lunch');
-        setShowPopup(true);
+        setPopupType('Lunch'); setShowPopupFlag(true);
     }
     const handleDinnerPopupClick = () => {
-        setNamePopup('Dinner');
-        setShowPopup(true);
+        setPopupType('Dinner'); setShowPopupFlag(true);
     }
     const handleSnackPopupClick = () => {
-        setNamePopup('Snack');
-        setShowPopup(true);
+        setPopupType('Snack'); setShowPopupFlag(true);
     }
 
-    const handleNameChange = (e) => setName(e.target.value);
-    const handleGramsChange = (e) => setGrams(e.target.value);
-    const handleCarbsChange = (e) => setCarbs(e.target.value);
-    const handlProteinChange = (e) => setProtein(e.target.value);
-    const handlFatChange = (e) => setFat(e.target.value);
 
-    const handleOutsideClick = () => setShowPopup(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Perform actions with the input values
-        console.log('name: ', name);
-        console.log('grams: ', grams);
-        console.log('carbs: ', carbs);
-        console.log('protein: ', protein);
-        console.log('fat: ', fat);
-
-        CreateMealDataLog(name, grams, carbs, protein, fat);
-
-        // Close the popup
-        setShowPopup(false);
-    };
+    const handleEnterFood = (foodItem) => {
+        console.log('Food Item: ', foodItem);
+        setFoodItems([...foodItems, foodItem]);
+    }
 
     
 
     return (
         <div className='main-container max-h-fit min-h-full'>
-            <NutritionGoalsBox 
-                calories={100}
-                carbs={20}
-                protein={30}
-                fat={15}
-                caloriesGoal={3000}
-                carbsGoal={350}
-                proteinGoal={150}
-                fatGoal={160}/>
-            
-            <p>Water</p>
-
             <WaterBox 
-                addWater={() => {console.log('Add water')}}
-                removeWater={() => {console.log('Remove water')}}
-                water={250}/>
+                addWater={handleAddWater}
+                removeWater={handleRemoveWater}
+                water={water}/>
 
-            <p>Meals</p>
-
-            <MealBox onClick={handleBreakfastPopupClick} title="Breakfast"/>
-            <MealBox onClick={handleLunchPopupClick} title="Lunch"/>
-            <MealBox onClick={handleDinnerPopupClick} title="Dinner"/>
-            <MealBox onClick={handleSnackPopupClick} title="Snack"/>
-
-            {showPopup && (
-                <div onClick={handleOutsideClick} className="fixed inset-0 flex items-center justify-center z-10 bg-gray-500 bg-opacity-50">
-                    <div className="bg-white p-6 rounded shadow-md">
-                        <h2 className="text-lg font-semibold mb-4">{namePopup}</h2>
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={handleNameChange}
-                                className="w-full p-2 border rounded"
-                                placeholder="Name"
-                                required />
-                                
-                            <input
-                                type="number"
-                                value={grams}
-                                onChange={handleGramsChange}
-                                className="w-full p-2 border rounded"
-                                placeholder="Grams"
-                                required />
-
-                            <input
-                                type="number"
-                                value={carbs}
-                                onChange={handleCarbsChange}
-                                className="w-full p-2 border rounded"
-                                placeholder="Carbs (g)"
-                                required />
-                                
-                            <input
-                                type="number"
-                                value={protein}
-                                onChange={handlProteinChange}
-                                className="w-full p-2 border rounded"
-                                placeholder="Protein (g)"
-                                required />
-                                
-                            <input
-                                type="number"
-                                value={fat}
-                                onChange={handlFatChange}
-                                className="w-full p-2 border rounded"
-                                placeholder="Fat (g)"
-                                required />
-
-                            <button 
-                                type="submit"
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                    Submit
-                            </button>
-                        </form>
-                    </div>
+            <div className='flex justify-evenly w-full my-4'>
+                    <button 
+                        className='quick-access-button'
+                        onClick={handleBreakfastPopupClick}>
+                        Enter Breakfast
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={handleLunchPopupClick}>
+                        Enter Lunch
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={handleDinnerPopupClick}>
+                        Enter Dinner
+                    </button>
+                    
+                    <button 
+                        className='quick-access-button'
+                        onClick={handleSnackPopupClick}>
+                        Enter Snacks
+                    </button>
                 </div>
-            )}
 
-            <NutritionTable foodData={FOOD_LOG_DATA}/>
+            <NutritionTable foodData={foodItems}/>
             
             <div className='flex flex-col items-center w-full h-auto mt-4'>
                 <button className='quick-access-button w-full' onClick={handleShowNutritionChartChange}>
                     {showFullNutritionChart ? 'Hide Advanced Nutrition' : 'Full Nutrition Chart'}
                 </button>
-                <NutritionPieChart foodData={FOOD_LOG_DATA} isFull={showFullNutritionChart}/>
+                <NutritionPieChart foodData={foodItems} isFull={showFullNutritionChart}/>
             </div>
+
+            { !showPopupFlag ? null :
+                <FoodPopup 
+                    handleSetShowPopup={setShowPopupFlag}
+                    handleEnterFood={handleEnterFood}
+                    receivedType={popupType}/>
+            }
         </div>
     );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-function FoodPopup({ handleSetShowPopup, handleEnterFood }) {
+function FoodPopup({ handleSetShowPopup, handleEnterFood, receivedType = '' }) {
     const [wantToAddNutrients, setWantToAddNutrients] = React.useState(false);
     const popupRef = React.useRef(null);
 
     const [name, setName] = React.useState('');
-    const [type, setType] = React.useState('');
+    const [type, setType] = React.useState(receivedType);
     const [calories, setCalories] = React.useState('');
     const [carbs, setCarbs] = React.useState('');
     const [protein, setProtein] = React.useState('');
@@ -54,21 +54,21 @@ function FoodPopup({ handleSetShowPopup, handleEnterFood }) {
         handleEnterFood({
             Name: name,
             Type: type,
-            Calories: calories,
-            TotalCarbohydrate: carbs,
-            Protein: protein,
-            TotalFat: totalFat,
-            SaturatedFat: saturatedFat,
-            TransFat: transFat,
-            Cholesterol: cholesterol,
-            Sodium: sodium,
-            Potassium: potasium,
-            DietaryFiber: fiber,
-            Sugar: sugar,
-            VitaminA: vitaminA,
-            VitaminC: vitaminC,
-            Calcium: calcium,
-            Iron: iron
+            Calories: parseInt(calories),
+            TotalCarbohydrate: parseInt(carbs),
+            Protein: parseInt(protein),
+            TotalFat: parseInt(totalFat),
+            SaturatedFat: parseInt(saturatedFat),
+            TransFat: parseInt(transFat),
+            Cholesterol: parseInt(cholesterol),
+            Sodium: parseInt(sodium),
+            Potassium: parseInt(potasium),
+            DietaryFiber: parseInt(fiber),
+            Sugar: parseInt(sugar),
+            VitaminA: parseInt(vitaminA),
+            VitaminC: parseInt(vitaminC),
+            Calcium: parseInt(calcium),
+            Iron: parseInt(iron)
         });
         handleSetShowPopup(0);
     }
