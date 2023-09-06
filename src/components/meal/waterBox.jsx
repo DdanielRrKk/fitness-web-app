@@ -70,7 +70,7 @@ function WaterBox({
                 <p className='font-bold text-2xl'>{water} ml</p>
             </div>
 
-            <div className='w-1/3 flex flex-row gap-2 items-center'>
+            <div className='w-1/3 flex flex-row gap-2 justify-end items-center'>
                     <p className='mr-2'>Remove Custom: </p>
                     
                     <input 
