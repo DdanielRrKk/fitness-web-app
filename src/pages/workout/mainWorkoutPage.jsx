@@ -5,6 +5,8 @@ import React from 'react';
 import WorkoutButton from '../../components/workout/workoutButton';
 import WorkoutDropdown from '../../components/workout/workoutDropdown';
 
+import WorkoutCalendar from '../../components/workout/workoutCalendar';
+
 import { WORKOUT_PLAN_DATA } from '../../helpers/test_data';
 
 
@@ -41,6 +43,10 @@ function MainWorkoutPage() {
             </div>
 
             <WorkoutDropdown exercises={selectedWorkoutExercises}/>
+
+            <div className='button-container p-4'>
+                <WorkoutCalendar />
+            </div>
         </div>
     );
 }
