@@ -117,7 +117,7 @@ export const WORKOUT_PLAN_DATA = {
                 { ID: 3, Name: 'Lateral Raises 1', Sets: 4, Type: 0, TypeValue: 10, Weights: 10, Rest: 60 },
                 { ID: 4, Name: 'Dips', Sets: 3, Type: 0, TypeValue: 10, Weights: 0, Rest: 60 }
             ]
-        }, { ID: 1, Name: 'Pull Workout', Exercises: [
+        }, { ID: 1, Name: 'Pull Workout 1', Exercises: [
                 { ID: 0, Name: 'Pull Downs', Sets: 4, Type: 0, TypeValue: 10, Weights: 40, Rest: 60 },
                 { ID: 1, Name: 'Single Hand Bent Over Rows', Sets: 4, Type: 0, TypeValue: 10, Weights: 12.5, Rest: 60 },
                 { ID: 2, Name: 'Slight Incline Seated Dumbbell Curls', Sets: 3, Type: 0, TypeValue: 10, Weights: 7.5, Rest: 60 },

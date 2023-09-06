@@ -16,33 +16,37 @@ function MainWorkoutPage() {
     const [selectedWorokut, setSelectedWorokut] = React.useState(0);
     const [selectedWorkoutExercises, setSelectedWorkoutExercises] = React.useState([]);
 
+
+    React.useEffect(() => {
+        const tempWorkout = workoutPlan.Workouts.find(workout => workout.ID === selectedWorokut);
+        setSelectedWorkoutExercises(tempWorkout.Exercises);
+    }, []);
+
+
     const handleSelectWorokutChange = (id, exercises) => {
-        if(id === selectedWorokut) {
-            setSelectedWorokut(-1);
-            setSelectedWorkoutExercises([]);
-        } else {
-            setSelectedWorokut(id);
-            setSelectedWorkoutExercises(exercises);
-        }
+        if(id === selectedWorokut) { setSelectedWorokut(-1); setSelectedWorkoutExercises([]); } 
+        else { setSelectedWorokut(id); setSelectedWorkoutExercises(exercises); }
     };
 
     console.log("workoutPlan in main workout: ", workoutPlan);
 
     return (
         <div className='main-container'>
-            <h2>{workoutPlan.Name}</h2>
-            
-            <div className='grid grid-cols-7 gap-4 mb-4'>
-                {workoutPlan.Workouts.map(workout => 
-                    <WorkoutButton 
-                        key={workout.ID}
-                        name={workout.Name}
-                        isSelected={workout.ID === selectedWorokut}
-                        changeSelection={() => handleSelectWorokutChange(workout.ID, workout.Exercises)}/>
-                )}
-            </div>
+            <div className='button-container p-4'>
+                <p className='font-bold'>{workoutPlan.Name}</p>
+                
+                <div className='grid grid-cols-7 gap-4 mb-4'>
+                    {workoutPlan.Workouts.map(workout => 
+                        <WorkoutButton 
+                            key={workout.ID}
+                            name={workout.Name}
+                            isSelected={workout.ID === selectedWorokut}
+                            changeSelection={() => handleSelectWorokutChange(workout.ID, workout.Exercises)}/>
+                    )}
+                </div>
 
-            <WorkoutDropdown exercises={selectedWorkoutExercises}/>
+                <WorkoutDropdown exercises={selectedWorkoutExercises}/>
+            </div>
 
             <div className='button-container p-4'>
                 <WorkoutCalendar />

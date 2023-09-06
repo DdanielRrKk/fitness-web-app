@@ -75,6 +75,14 @@ function WorkoutCalendar () {
         alert(`Workout added for day ${hoveredDay}`);
     };
 
+    const addCurrentDateStyle = (day) => {
+        if(currentDate.getFullYear() === currentMonth.getFullYear()
+        && currentDate.getMonth() === currentMonth.getMonth() 
+        && currentDate.getDate() === day) {
+            return 'text-primary';
+        }
+    }
+
     return (
         <>
             <div className="flex items-center justify-center py-4">
@@ -93,7 +101,7 @@ function WorkoutCalendar () {
                 </button>
             </div>
 
-            <div className="h-full w-fit grid grid-cols-7 gap-0">
+            <div className="h-full w-fit grid grid-cols-7 gap-1">
                 <div className="w-40 h-6 font-bold text-center border border-gray-300">Mon</div>
                 <div className="w-40 h-6 font-bold text-center border border-gray-300">Tue</div>
                 <div className="w-40 h-6 font-bold text-center border border-gray-300">Wed</div>
@@ -106,7 +114,7 @@ function WorkoutCalendar () {
                     if(day <= 0) return (
                         <div
                             key={day}
-                            className="w-40 h-40 border-gray-300 bg-gray-400"
+                            className="w-40 h-40 border-gray-300 bg-gray-400 rounded-lg"
                             onMouseEnter={() => handleDayHover(day)}
                             onMouseLeave={() => handleDayHover(null)} >
                         </div>
@@ -115,15 +123,15 @@ function WorkoutCalendar () {
                     return (
                         <div
                             key={day}
-                            className="w-40 h-40 flex flex-col justify-stert items-center py-2 px-3 border border-gray-300 hover:bg-gray-200 relative"
+                            className="w-40 h-40 flex flex-col justify-stert items-center py-2 px-3 border border-gray-300 hover:bg-gray-200 relative rounded-lg"
                             onMouseEnter={() => handleDayHover(day)}
                             onMouseLeave={() => handleDayHover(null)} >
-                            <p className="w-full text-left font-bold">{day}</p>
+                            <p className={`w-full text-left font-bold ${addCurrentDateStyle(day)}`}>{day}</p>
                             {hoveredDay === day && (
                                 <button
-                                className="px-2 py-1 bg-primary text-white rounded hover:bg-blue-600"
-                                onClick={addWorkout} >
-                                Add Workout
+                                    className="px-2 py-1 bg-primary text-white rounded hover:bg-blue-600"
+                                    onClick={addWorkout} >
+                                    Add Workout
                                 </button>
                             )}
                         </div>
