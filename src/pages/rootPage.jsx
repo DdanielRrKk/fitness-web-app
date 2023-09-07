@@ -43,13 +43,13 @@ function RootPage() {
                                 Workout
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink 
                             to='learn'
                             className={handleIsActiveNavLink}>
                                 Learn
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
 
                 <ul className='flex flex-col gap-4'>

@@ -35,7 +35,7 @@ const FAQ_LIST = [ {
 }
 ];
 
-function MainLearnPage() {
+function LearnPage() {
     const [faqList, setFaqList] = React.useState(FAQ_LIST);
 
     return (
@@ -60,4 +60,4 @@ function MainLearnPage() {
     );
 }
 
-export default MainLearnPage;
+export default LearnPage;

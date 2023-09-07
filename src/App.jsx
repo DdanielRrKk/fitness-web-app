@@ -16,9 +16,9 @@ import HomePage from './pages/home/homePage';
 import MainAuthenticationPage from './pages/auth/mainAuthenticationPage.jsx';
 import MainMealPage from './pages/meal/mainMealPage.jsx';
 import MainWorkoutPage from './pages/workout/mainWorkoutPage.jsx';
-import MainLearnPage from './pages/learn/mainLearnPage.jsx';
+import LearnPage from './pages/help/learnPage.jsx';
 
-import HelpPage from './pages/settings/helpPage';
+import MainHelpPage from './pages/help/mainHelpPage';
 import MainSettingsPage from './pages/settings/mainSettingsPage.jsx';
 
 import ErrorPage from './pages/errorPage.jsx';
@@ -49,12 +49,12 @@ const router = createBrowserRouter([
       },
       { 
         path: "learn", 
-        element: <MainLearnPage />, 
+        element: <LearnPage />, 
         errorElement: <ErrorPage />
       },
       { 
         path: "help", 
-        element: <HelpPage />, 
+        element: <MainHelpPage />, 
         errorElement: <ErrorPage />
       },
       { 
